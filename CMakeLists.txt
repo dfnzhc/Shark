@@ -13,9 +13,18 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 # Project Configuration
 # --------------------------------------------------------------
 
+file(READ "Include/Shark/Core/Detail/Setup.hpp" SKT_SETUP_FILE)
+string(REGEX MATCH "#define[ ]+SKT_VERSION_MAJOR[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
+string(REGEX MATCH "#define[ ]+SKT_VERSION_MINOR[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
+string(REGEX MATCH "#define[ ]+SKT_VERSION_PATCH[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
+set(SKT_VERSION_MAJOR "${CMAKE_MATCH_1}")
+set(SKT_VERSION_MINOR "${CMAKE_MATCH_1}")
+set(SKT_VERSION_PATCH "${CMAKE_MATCH_1}")
+set(SKT_VERSION ${SKT_VERSION_MAJOR}.${SKT_VERSION_MINOR}.${SKT_VERSION_PATCH})
+
 project(Shark
         LANGUAGES CXX C
-        VERSION 0.0.1)
+        VERSION ${SKT_VERSION})
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")

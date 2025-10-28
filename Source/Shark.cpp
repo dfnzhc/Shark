@@ -5,12 +5,12 @@
  * @Brief This file is part of Shark.
  */
 
-#include "Shark.hpp"
+#include "Shark/Shark.hpp"
 
-namespace SKM
+namespace SKT
 {
     int TestFunc()
     {
         return 42;
     }
-} // namespace SKM
+} // namespace SKT

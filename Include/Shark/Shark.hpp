@@ -7,11 +7,10 @@
 
 #pragma once
 
-#include "Shark/Detail/Setup.hpp"
+#include "Shark/Core/Detail/Setup.hpp"
 
-
-// dummy function
-namespace SKM
+namespace SKT
 {
+    // dummy function
     int TestFunc();
-} // namespace SKM
+} // namespace SKT

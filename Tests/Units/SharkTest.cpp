@@ -9,7 +9,7 @@
 
 #include <Shark/Shark.hpp>
 
-using namespace SKM;
+using namespace SKT;
 
 TEST(SharkTest, TestFunc)
 {
