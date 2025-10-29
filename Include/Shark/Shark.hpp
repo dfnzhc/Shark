@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @File Shark.hpp
  * @Author dfnzhc (https://github.com/dfnzhc)
  * @Date 2025/10/27
@@ -13,4 +13,9 @@ namespace SKT
 {
     // dummy function
     int TestFunc();
+
+    SKT_FUNC int TestFunc2()
+    {
+        return 42;
+    }
 } // namespace SKT

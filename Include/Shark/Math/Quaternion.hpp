@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @File Quaternion.hpp
  * @Author dfnzhc (https://github.com/dfnzhc)
  * @Date 2025/10/27

@@ -13,7 +13,7 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 # Project Configuration
 # --------------------------------------------------------------
 
-file(READ "Include/Shark/Core/Detail/Setup.hpp" SKT_SETUP_FILE)
+file(READ "Include/Shark/Core/Defines.hpp" SKT_SETUP_FILE)
 string(REGEX MATCH "#define[ ]+SKT_VERSION_MAJOR[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
 string(REGEX MATCH "#define[ ]+SKT_VERSION_MINOR[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
 string(REGEX MATCH "#define[ ]+SKT_VERSION_PATCH[ ]+([0-9]+)" _ ${SKT_SETUP_FILE})
@@ -31,6 +31,7 @@ set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=/utf-8>")
 
 # --------------------------------------------------------------
 # Global settings
@@ -77,33 +78,6 @@ target_include_directories(Shark
         ${CMAKE_CURRENT_SOURCE_DIR}/Include/Shark
         ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
-
-SetCompilerFlags(Shark)
-
-target_compile_definitions(Shark
-        PUBLIC
-        $<$<CONFIG:Release>:NDEBUG>
-        $<$<CONFIG:Debug>:_DEBUG>
-        # Windows
-        $<$<PLATFORM_ID:Windows>:NOMINMAX>
-        $<$<PLATFORM_ID:Windows>:UNICODE>
-        # MSVC C++ 
-        $<$<CXX_COMPILER_ID:MSVC>:_USE_MATH_DEFINES>
-        $<$<CXX_COMPILER_ID:MSVC>:_SCL_SECURE_NO_WARNINGS>
-        $<$<CXX_COMPILER_ID:MSVC>:_CRT_SECURE_NO_WARNINGS>
-        $<$<CXX_COMPILER_ID:MSVC>:_ENABLE_EXTENDED_ALIGNED_STORAGE>
-        $<$<CXX_COMPILER_ID:MSVC>:_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING>
-        PRIVATE
-        # Clang.
-        $<$<CXX_COMPILER_ID:Clang>:_MSC_EXTENSIONS> # enable MS extensions
-        # $<$<CONFIG:Debug>:_ITERATOR_DEBUG_LEVEL=0>
-)
-
-if (MSVC)
-    target_compile_options(Shark PUBLIC /utf-8)
-else ()
-    target_compile_options(Shark PUBLIC -finput-charset=UTF-8 -fexec-charset=UTF-8)
-endif ()
 
 add_library(Shark::Shark ALIAS Shark)
 

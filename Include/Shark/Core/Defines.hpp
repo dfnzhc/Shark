@@ -1,10 +1,10 @@
 /**
  * @File Defines.hpp
  * @Author dfnzhc (https://github.com/dfnzhc)
- * @Date 2025/10/27
+ * @Date 2025/10/29
  * @Brief This file is part of Shark.
  */
-
+ 
 #pragma once
 
 #include <cmath>
@@ -81,13 +81,13 @@ static_assert(SKT_CPLUSPLUS >= 202002L, "Shark 必须使用 C++20 或更新的�
 
 // -------------------------
 // GPU 代码设置
-#if defined(__CUDA_ARCH__)
+#if defined(__CUDA_ARCH__) || defined(__CUDACC__)
 #define SKT_GPU_CODE 1
 #else
 #define SKT_CPU_CODE 1
 #endif
 
-#if defined(SKT_COMPILER_NVCC)
+#if SKT_GPU_CODE
 #define SKT_CPU_GPU __host__ __device__
 #define SKT_GPU __device__
 #else

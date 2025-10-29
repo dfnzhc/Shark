@@ -1,6 +1,8 @@
 if (BEE_BUILD_TESTS)
     enable_testing()
     add_subdirectory(Units)
+    
+    add_subdirectory(CUDA)
 endif ()
 
 if (BEE_BUILD_BENCHMARKS)
