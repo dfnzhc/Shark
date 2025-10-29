@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "Shark/Core/Detail/Setup.hpp"
+#include "Core/Defines.hpp"
 
 namespace SKT
 {
