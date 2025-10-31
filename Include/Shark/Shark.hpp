@@ -8,6 +8,8 @@
 #pragma once
 
 #include "Core/Defines.hpp"
+#include "Core/Concepts.hpp"
+#include "Math/Math.hpp"
 
 namespace SKT
 {

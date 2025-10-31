@@ -22,38 +22,15 @@
 #define MAX(a, b) (a > b ? a : b)
 #endif
 
-#include "Shark/Shark.hpp"
-using namespace SKT;
+#include "TestMath.hpp"
 
-__global__ void testKernel(int val)
+int main(int argc, char** argv)
 {
-    printf("[%d, %d]:\t\tValue is:%d -> '%d'\n",
-           blockIdx.y * gridDim.x + blockIdx.x,
-           threadIdx.z * blockDim.x * blockDim.y + threadIdx.y * blockDim.x + threadIdx.x,
-           val, TestFunc2());
-}
+    std::cout << "****************************\n";
+    
+    std::cout << "Common Math 测试: " << (TestCommonMath() ? "成功\n" : "失败.\n");
 
-int main(int argc, char **argv)
-{
-    int            devID;
-    cudaDeviceProp props;
-
-    // This will pick the best possible CUDA capable device
-    devID = findCudaDevice(argc, (const char **)argv);
-
-    // Get GPU information
-    checkCudaErrors(cudaGetDevice(&devID));
-    checkCudaErrors(cudaGetDeviceProperties(&props, devID));
-    printf("Device %d: \"%s\" with Compute capability %d.%d\n", devID, props.name, props.major, props.minor);
-
-    printf("什么？printf() is called. Output:\n\n");
-
-    // Kernel configuration, where a two-dimensional grid and
-    // three-dimensional blocks are configured.
-    dim3 dimGrid(2, 2);
-    dim3 dimBlock(2, 2, 2);
-    testKernel<<<dimGrid, dimBlock>>>(10);
-    cudaDeviceSynchronize();
+    std::cout << "****************************\n";
 
     return EXIT_SUCCESS;
 }

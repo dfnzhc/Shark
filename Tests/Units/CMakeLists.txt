@@ -13,3 +13,4 @@ CPMAddPackage(
 set(${CMAKE_CURRENT_BINARY_DIR})
 
 AddTestProgram(SharkTest.cpp "Shark::Shark;GTest::gtest;GTest::gtest_main;GTest::gmock" "Core")
+AddTestProgram(CommonTest.cpp "Shark::Shark;GTest::gtest;GTest::gtest_main;GTest::gmock" "Core")

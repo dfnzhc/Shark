@@ -13,6 +13,26 @@
 #include <limits>
 #include <cassert>
 
+#ifdef max
+#undef max
+#endif
+
+#ifdef min
+#undef min
+#endif
+
+#ifdef isnan
+#undef isnan
+#endif
+
+#ifdef isinf
+#undef isinf
+#endif
+
+#ifdef log2
+#undef log2
+#endif
+
 #define SKT_VERSION_MAJOR 0
 #define SKT_VERSION_MINOR 0
 #define SKT_VERSION_PATCH 1
@@ -83,7 +103,9 @@ static_assert(SKT_CPLUSPLUS >= 202002L, "Shark 必须使用 C++20 或更新的�
 // GPU 代码设置
 #if defined(__CUDA_ARCH__) || defined(__CUDACC__)
 #define SKT_GPU_CODE 1
+#define SKT_CPU_CODE 0
 #else
+#define SKT_GPU_CODE 0
 #define SKT_CPU_CODE 1
 #endif
 
@@ -151,3 +173,22 @@ static_assert(SKT_CPLUSPLUS >= 202002L, "Shark 必须使用 C++20 或更新的�
 #else
 #  define SKT_ALIGNAS(N) alignas(N)
 #endif
+
+// -------------------------
+// 类型别名
+namespace SKT
+{
+    using i8  = int8_t;
+    using i16 = int16_t;
+    using i32 = int32_t;
+    using i64 = int64_t;
+
+    using u8   = uint8_t;
+    using u16  = uint16_t;
+    using u32  = uint32_t;
+    using u64  = uint64_t;
+    using uint = unsigned int;
+
+    using f32 = float;
+    using f64 = double;
+} // namespace Bee

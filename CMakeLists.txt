@@ -79,6 +79,13 @@ target_include_directories(Shark
         ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
 
+target_compile_features(Shark PUBLIC cxx_std_23)
+
+target_compile_options (Shark
+        INTERFACE
+        "$<$<COMPILE_LANGUAGE:CUDA>:--std=c++20;--use_fast_math;--expt-relaxed-constexpr;--extended-lambda;--forward-unknown-to-host-compiler>"
+)
+
 add_library(Shark::Shark ALIAS Shark)
 
 # Samples
