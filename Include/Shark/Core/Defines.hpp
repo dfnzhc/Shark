@@ -101,15 +101,13 @@ static_assert(SKT_CPLUSPLUS >= 202002L, "Shark 必须使用 C++20 或更新的�
 
 // -------------------------
 // GPU 代码设置
-#if defined(__CUDA_ARCH__) || defined(__CUDACC__)
+#if defined(__CUDA_ARCH__)
 #define SKT_GPU_CODE 1
-#define SKT_CPU_CODE 0
 #else
-#define SKT_GPU_CODE 0
 #define SKT_CPU_CODE 1
 #endif
 
-#if SKT_GPU_CODE
+#if defined(__CUDACC__)
 #define SKT_CPU_GPU __host__ __device__
 #define SKT_GPU __device__
 #else

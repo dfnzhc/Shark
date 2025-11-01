@@ -79,6 +79,11 @@ target_include_directories(Shark
         ${CMAKE_CURRENT_SOURCE_DIR}/Source
 )
 
+target_compile_definitions(Shark
+        PUBLIC
+        $<$<CONFIG:Debug>:SKT_DEBUG_BUILD>
+)
+
 target_compile_features(Shark PUBLIC cxx_std_23)
 
 target_compile_options (Shark
