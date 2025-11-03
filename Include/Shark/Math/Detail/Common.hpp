@@ -25,7 +25,14 @@ namespace SKT
     template <ArithType T>
     SKT_FUNC T Abs(T x)
     {
-        return std::abs(x);
+        if constexpr (std::is_unsigned_v<T>)
+        {
+            return x;
+        }
+        else
+        {
+            return x < 0 ? -x : x;
+        }
     }
 
     template <ArithType A, ArithType B>

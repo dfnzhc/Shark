@@ -10,3 +10,6 @@
 #include "Detail/Bits.hpp"
 #include "Detail/Constants.hpp"
 #include "Detail/Common.hpp"
+#include "Detail/Bits.hpp"
+#include "Detail/Constants.hpp"
+#include "Detail/Vector.hpp"

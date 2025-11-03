@@ -22,13 +22,18 @@
 #define MAX(a, b) (a > b ? a : b)
 #endif
 
-#include "TestMath.hpp"
+extern bool TestCommonMath();
+extern bool TestVectorMath();
 
 int main(int argc, char** argv)
 {
     std::cout << "****************************\n";
     
     std::cout << "Common Math 测试: " << (TestCommonMath() ? "成功\n" : "失败.\n");
+    
+    std::cout << "----------------------------\n";
+    
+    std::cout << "Vector Math 测试: " << (TestVectorMath() ? "成功\n" : "失败.\n");
 
     std::cout << "****************************\n";
 

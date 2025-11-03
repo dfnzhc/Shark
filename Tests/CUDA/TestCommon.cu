@@ -1,11 +1,17 @@
 /**
- * @File TestMath.cu
+ * @File TestCommon.cu
  * @Author dfnzhc (https://github.com/dfnzhc)
  * @Date 2025/10/31
  * @Brief This file is part of Shark.
  */
 
-#include "TestMath.hpp"
+
+#include <cassert>
+#include <cstdio>
+
+#include "helper_cuda.h"
+#include "helper_functions.h"
+
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 #include <thrust/generate.h>
@@ -16,8 +22,8 @@
 
 using namespace SKT;
 
-#define SKT_TEST(expr, expected) do { if (Abs((expr) - expected) > kEpsilonF) { errCnt += 1; printf("[Common Math] Error: " #expr " (%s:%d). \n", __FILE__, __LINE__);} } while(0)
-#define SKT_TEST_NEAR(expr, expected, epsilon) do { if (Abs((expr) - expected) > epsilon) { errCnt += 1; printf("[Common Math] Error: " #expr " (%s:%d). \n", __FILE__, __LINE__);} } while(0)
+#define SKT_TEST(expr, expected) do { if (Abs((expr) - (expected)) > kEpsilonF) { errCnt += 1; printf("[Common Math] Error: " #expr " (%s:%d). \n", __FILE__, __LINE__);} } while(0)
+#define SKT_TEST_NEAR(expr, expected, epsilon) do { if (Abs((expr) - (expected)) > epsilon) { errCnt += 1; printf("[Common Math] Error: " #expr " (%s:%d). \n", __FILE__, __LINE__);} } while(0)
 
 // printf("[Common Math] Error: " #expr " (%s:%d). \n", __FILE__, __LINE__);
 
@@ -229,3 +235,6 @@ bool TestCommonMath()
 
     return h_vec[0] == 0;
 }
+
+#undef SKT_TEST
+#undef SKT_TEST_NEAR
